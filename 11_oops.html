@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OOPS in JS</title>
+</head>
+<body>
+    <script>
+        // Encapsulation: Wrapping data and methods into a single unit (class).
+        console.log("Encapsultation Implementation:")
+        class enPerson {
+            constructor(name, id) {
+                this.name = name;
+                this.id = id;
+            }
+            add_Address(add) {
+                this.add = add;
+            }
+            getDetails() {
+                console.log(`Name is ${this.name}, Address is: ${this.add}`);
+            }
+        }
+ 
+        let p1 = new enPerson('Nandita', 22);
+        p1.add_Address('Bangalore');
+        p1.getDetails();
+
+        // Abstraction: Creating an abstract class that cannot be instantiated and is meant to be inherited by other classes.
+        console.log("Abstraction Implementation:")
+        function person(fname, lname) {
+            let firstname = fname;
+            let lastname = lname;
+        
+            let getDetails_noaccess = function () {
+                return (`First name is: ${firstname} Last 
+                    name is: ${lastname}`);
+            }
+        
+            this.getDetails_access = function () {
+                return (`First name: ${firstname}, Last name: ${lastname}`);
+            }
+        }
+        let person1 = new person('Nandita', 'Mahesh');
+        console.log(person1.firstname);
+        console.log(person1.getDetails_noaccess);
+        console.log(person1.getDetails_access());
+
+        // Inheritance: Creating a new class from an existing class, inheriting properties and methods.
+        console.log("Inheritance Implementation:")
+        class inPerson {
+            constructor(name) {
+                this.name = name;
+            }
+            displayDetails() {
+                return (`Name of person: ${this.name}`);
+            }
+        }
+        class Employee extends inPerson {
+            constructor(name, id) {
+                // super - for calling the parent class constructor
+                super(name);
+                this.id = id;
+            }
+            displayDetails() {
+                return (`${super.displayDetails()},
+                Student ID: ${this.id}`);
+            }
+        }
+        let emp = new Employee('Nandita', 22);
+        console.log(emp.displayDetails());
+
+        // Polymorphism: Ability to call the same method on different objects and each object responds in a different way.
+        console.log("Polymorphism Implementation:")
+        class parent {
+            hello() {
+                console.log('Parent here')
+            }
+        }
+        class child1 extends parent{
+            hello(){
+                console.log('Child 1 here.')
+            }
+        }
+        class child2 extends parent{
+            hello(){
+                console.log('Child 2 here.')
+            }
+        }
+        let obj1 = new parent()
+        let obj2 = new child1()
+        let obj3 = new child2()
+        obj1.hello()
+        obj2.hello()
+        obj3.hello()
+    </script>
+</body>
+</html>
